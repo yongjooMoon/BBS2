@@ -44,21 +44,14 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class ="nav navbar-nav">
-				<li><a href="main.jsp">메인</a></li>
 				<li class ="active"><a href="bbs.jsp">게시판</a></li>
+				<li><a href="pic.jsp">겔러리</a></li>
 			</ul>
 			<%
 				if(userID ==null){
 			%>
 				<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">접속하기<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="login.jsp">로그인</a></li>
-					<li><a href="join.jsp">회원가입</a></li>
-				</ul>
+				<li><a href="logoutAction.jsp">로그아웃</a></li>
 			</ul>
 			<%
 				} else{

@@ -9,6 +9,8 @@ public class Bbs {
 	private String bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
+	private int NUM;
+
 	public int getBbsID() {
 		return bbsID;
 	}
@@ -45,6 +47,11 @@ public class Bbs {
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
 	}
-	
+	public int getNUM() {
+		return NUM;
+	}
+	public void setNUM(int NUM) {
+		this.NUM = NUM;
+	}
 	
 }

@@ -23,7 +23,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class ="nav navbar-nav">
-				<li><a href="bbs.jsp">게시판</a></li>
+				<li><a href="bbs.jsp">방명록</a></li>
 				<li><a href="pic.jsp">겔러리</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -55,7 +55,7 @@
 					</div>
 					<div class="form-group" style="text-align: center;">
 						<div class="btn=group" data-toggle="buttons">
-							<label class="btn btn-primary active">
+							<label class="btn btn-primary">
 								<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
 							</label>
 							<label class="btn btn-primary">

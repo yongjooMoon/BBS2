@@ -23,7 +23,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class ="nav navbar-nav">
-				<li><a href="bbs.jsp">게시판</a></li>
+				<li><a href="bbs.jsp">방명록</a></li>
 				<li><a href="pic.jsp">겔러리</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

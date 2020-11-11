@@ -7,10 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+
 public class BbsDAO {
 	
 	private Connection conn;
 	private ResultSet rs;
+	private PreparedStatement pstmt;
 	
 	public BbsDAO() {
 		try {
@@ -22,6 +24,29 @@ public class BbsDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<Bbs> search(String userID) {
+		String SQL = "SELECT * FROM BBS WHERE userID LIKE ?";
+		ArrayList<Bbs> bbsList = new ArrayList<Bbs>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1,  "%" + userID + "%");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+				bbsList.add(bbs);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bbsList;
 	}
 	
 	public String getDate() {
@@ -36,6 +61,20 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 		return ""; //데이터베이스 오류
+	}
+	
+	public int count() {
+		String SQL = "SELECT COUNT(*) FROM BBS";
+		try {
+			PreparedStatement pstmt =conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
 	}
 	
 	public int getNext() {
@@ -71,7 +110,7 @@ public class BbsDAO {
 	}
 	
 	public ArrayList<Bbs> getList(int pageNumber){
-		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+		String SQL = "SELECT * ,@rownum:=@rownum+1 AS NUM FROM BBS ,(SELECT @rownum:=0) TMP WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC, NUM DESC LIMIT 10";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		try {
 			PreparedStatement pstmt =conn.prepareStatement(SQL);
@@ -85,6 +124,7 @@ public class BbsDAO {
 				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setNUM(rs.getInt(8));
 				list.add(bbs);
 			}
 		} catch (Exception e) {
@@ -94,7 +134,7 @@ public class BbsDAO {
 	}
 	
 	public boolean nextPage(int pageNumber) {
-		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+		String SQL = "SELECT * FROM BBS WHERE bbsID < ? ORDER BY bbsID DESC LIMIT 10";
 		try {
 			PreparedStatement pstmt =conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
@@ -145,7 +185,7 @@ public class BbsDAO {
 	}
 	
 	public int delete(int bbsID) {
-		String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
+		String SQL = "DELETE FROM BBS WHERE bbsID = ?";
 		try {
 			PreparedStatement pstmt =conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);

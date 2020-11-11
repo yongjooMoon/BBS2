@@ -31,7 +31,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class ="nav navbar-nav">
 				<li><a href="bbs.jsp">방명록</a></li>
-				<li><a href="pic.jsp">겔러리</a></li>
+				<li class="active"><a href="pic.jsp">겔러리</a></li>
 			</ul>
 			<%
 				if(userID ==null){
@@ -57,14 +57,15 @@
 			%>
 		</div>
 	 </nav>
-	 <div class = "container">
-	 	<div class ="jumbotron">
-	 		<div class ="container">
-	 			<h1>사이트 소개</h1>
-	 			<p>나의 일생 연대기를 담은 페이지 입니다.</p>
-	 			<p><a class = "btn btn-primary btn-pull" href="bbs.jsp" role ="button">방명록 남기기(필수)</a></p>
-	 		</div>
-	 	</div>
+	 <script>
+	 $('.carousel').carousel({
+
+		interval: 2000
+
+	})
+	</script>
+	 <div class ="container">
+		<h3 style="text-align: center;"><a href="page1.jsp">20살 초반</a></h3>
 	 </div>
 	 <div class ="container">
 	 	<div id="myCarousel" class="carousel slide" data-ride="carausel">
@@ -88,6 +89,35 @@
 	 			<span class ="glyphicon glyphicon-chevron-left"></span>
 	 		</a>
 	 		<a class="right carousel-control" href="#myCarousel" data-slide="next">
+	 			<span class ="glyphicon glyphicon-chevron-right"></span>
+	 		</a>
+	 	</div>
+	 </div>
+	 <div class ="container">
+		<h3 style="text-align: center;"><a href="page2.jsp">20살 중반</a></h3>
+	 </div>
+	 <div class ="container">
+	 	<div id="myCarousel2" class="carousel slide" data-ride="carausel">
+	 		<ol class="carousel-indicators">
+		 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		 		<li data-target="#myCarousel" data-slide-to="1"></li>
+		 		<li data-target="#myCarousel" data-slide-to="2"></li>
+	 		</ol>
+	 		<div class="carousel-inner">
+	 			<div class="item active">
+	 				<img src="images/1.jpg">
+	 			</div>
+	 			<div class="item">
+	 				<img src="images/2.jpg">
+	 			</div>
+	 			<div class="item">
+	 				<img src="images/3.jpg">
+	 			</div>
+	 		</div>
+	 		<a class="left carousel-control" href="#myCarousel2" data-slide="prev">
+	 			<span class ="glyphicon glyphicon-chevron-left"></span>
+	 		</a>
+	 		<a class="right carousel-control" href="#myCarousel2" data-slide="next">
 	 			<span class ="glyphicon glyphicon-chevron-right"></span>
 	 		</a>
 	 	</div>

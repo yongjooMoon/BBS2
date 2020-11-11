@@ -30,7 +30,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class ="nav navbar-nav">
-				<li class ="active"><a href="bbs.jsp">게시판</a></li>
+				<li class ="active"><a href="bbs.jsp">방명록</a></li>
 				<li><a href="pic.jsp">겔러리</a></li>
 			</ul>
 			<%
